@@ -23,6 +23,7 @@ class Film(Base):
     director = Column(String)
     year = Column(Integer)
     genre = Column(String)
+    type = Column(String, nullable=False)
     date_watched = Column(Date)
     rating = Column(Integer)  # 1-5
     notes = Column(Text)
