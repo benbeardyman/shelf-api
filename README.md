@@ -53,42 +53,43 @@ cp shelf.db shelf.db.bak
 
 ## API endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/books/` | List all books |
-| POST | `/api/books/` | Add a book |
-| GET | `/api/books/{id}` | Get a single book |
-| PATCH | `/api/books/{id}` | Update a book |
-| DELETE | `/api/books/{id}` | Delete a book |
-| GET | `/api/films/` | List all films |
-| POST | `/api/films/` | Add a film |
-| GET | `/api/films/{id}` | Get a single film |
-| PATCH | `/api/films/{id}` | Update a film |
-| DELETE | `/api/films/{id}` | Delete a film |
+| Method | Path              | Description       |
+| ------ | ----------------- | ----------------- |
+| GET    | `/api/books/`     | List all books    |
+| POST   | `/api/books/`     | Add a book        |
+| GET    | `/api/books/{id}` | Get a single book |
+| PATCH  | `/api/books/{id}` | Update a book     |
+| DELETE | `/api/books/{id}` | Delete a book     |
+| GET    | `/api/films/`     | List all films    |
+| POST   | `/api/films/`     | Add a film        |
+| GET    | `/api/films/{id}` | Get a single film |
+| PATCH  | `/api/films/{id}` | Update a film     |
+| DELETE | `/api/films/{id}` | Delete a film     |
 
 ### Book fields
 
-| Field | Type | Required |
-|-------|------|----------|
-| title | string | yes |
-| author | string | yes |
-| year | integer | no |
-| genre | string | no |
-| date_read | date (YYYY-MM-DD) | no |
-| rating | integer (1–5) | no |
-| notes | string | no |
+| Field     | Type              | Required |
+| --------- | ----------------- | -------- |
+| title     | string            | yes      |
+| author    | string            | yes      |
+| year      | integer           | no       |
+| genre     | string            | no       |
+| date_read | date (YYYY-MM-DD) | no       |
+| rating    | integer (1–5)     | no       |
+| notes     | string            | no       |
 
 ### Film fields
 
-| Field | Type | Required |
-|-------|------|----------|
-| title | string | yes |
-| director | string | no |
-| year | integer | no |
-| genre | string | no |
-| date_watched | date (YYYY-MM-DD) | no |
-| rating | integer (1–5) | no |
-| notes | string | no |
+| Field        | Type              | Required |
+| ------------ | ----------------- | -------- |
+| title        | string            | yes      |
+| director     | string            | no       |
+| year         | integer           | no       |
+| genre        | string            | no       |
+| type         | string            | yes      |
+| date_watched | date (YYYY-MM-DD) | no       |
+| rating       | integer (1–5)     | no       |
+| notes        | string            | no       |
 
 ## Serving the frontend (production)
 
@@ -136,10 +137,10 @@ Run from your development machine using the deploy script in the root of the mon
 
 ## Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| fastapi | Web framework |
-| uvicorn | ASGI server |
-| sqlalchemy | ORM and query builder |
-| alembic | Schema migrations (for future use) |
-| pydantic | Request/response validation |
+| Package    | Purpose                            |
+| ---------- | ---------------------------------- |
+| fastapi    | Web framework                      |
+| uvicorn    | ASGI server                        |
+| sqlalchemy | ORM and query builder              |
+| alembic    | Schema migrations (for future use) |
+| pydantic   | Request/response validation        |
