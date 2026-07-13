@@ -1,5 +1,8 @@
 import sqlite3
 import sys
+from logger import get_logger
+
+logger = get_logger(__name__)
 
 DB_PATH = "./shelf.db"
 
@@ -12,21 +15,23 @@ migrations = [
 
 
 def run():
+    logger.info("Starting database migrations...")
     conn = sqlite3.connect(DB_PATH)
     for sql in migrations:
         try:
             conn.execute(sql)
             conn.commit()
-            print(f"Applied: {sql}")
+            logger.info(f"Applied: {sql}")
         except sqlite3.OperationalError as e:
             if "duplicate column" in str(e):
-                print(f"Skipped (already applied): {sql}")
+                logger.info(f"Skipped (already applied): {sql}")
             else:
-                print(f"Error running migration: {e}", file=sys.stderr)
+                logger.error(f"Error running migration: {e}")
                 conn.close()
+                logger.critical("Migration failed. Exiting.")
                 sys.exit(1)
     conn.close()
-    print("Migrations complete.")
+    logger.info("Migrations complete.")
 
 
 if __name__ == "__main__":
