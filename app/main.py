@@ -1,11 +1,12 @@
+from app.routers import books
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pathlib import Path
 
-from database import Base, engine
-from routers import books, films
-from logger import get_logger
+from app.database import Base, engine
+from app.routers import films
+from app.logger import get_logger
 
 logger = get_logger(__name__)
 

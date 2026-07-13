@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from database import get_db
-from models import Film
-from schemas import FilmCreate, FilmUpdate, FilmOut
-from logger import get_logger
+from app.database import get_db
+from app.models import Film
+from app.schemas import FilmCreate, FilmUpdate, FilmOut
+from app.logger import get_logger
 
 logger = get_logger(__name__)
 
