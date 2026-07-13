@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ```bash
 source venv/bin/activate
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
@@ -30,13 +30,17 @@ Interactive API docs (Swagger UI) are available at `http://localhost:8000/docs`.
 
 ```
 shelf-api/
-├── main.py          # Application entry point, router registration, static file serving
-├── database.py      # SQLAlchemy engine, session factory, Base class
-├── models.py        # ORM models — Book, Film
-├── schemas.py       # Pydantic schemas for request validation and response serialisation
-├── routers/
-│   ├── books.py     # CRUD routes for /api/books
-│   └── films.py     # CRUD routes for /api/films
+├── app/
+│   ├── main.py      # Application entry point, router registration, static file serving
+│   ├── database.py  # SQLAlchemy engine, session factory, Base class
+│   ├── models.py    # ORM models — Book, Film
+│   ├── schemas.py   # Pydantic schemas for request validation and response serialisation
+│   ├── logger.py    # Logging configuration
+│   ├── routers/
+│   │   ├── __init__.py
+│   │   ├── books.py # CRUD routes for /api/books
+│   │   └── films.py # CRUD routes for /api/films
+│   └── __init__.py
 ├── requirements.txt
 └── shelf.db         # SQLite database file (created automatically on first run)
 ```

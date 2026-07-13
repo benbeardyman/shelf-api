@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from database import get_db
-from models import Book
-from schemas import BookCreate, BookUpdate, BookOut
-from logger import get_logger
+from app.database import get_db
+from app.models import Book
+from app.schemas import BookCreate, BookUpdate, BookOut
+from app.logger import get_logger
 
 logger = get_logger(__name__)
 
