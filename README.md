@@ -33,13 +33,19 @@ shelf-api/
 ├── app/
 │   ├── main.py      # Application entry point, router registration, static file serving
 │   ├── database.py  # SQLAlchemy engine, session factory, Base class
-│   ├── models.py    # ORM models — Book, Film
-│   ├── schemas.py   # Pydantic schemas for request validation and response serialisation
 │   ├── logger.py    # Logging configuration
 │   ├── routers/
 │   │   ├── __init__.py
 │   │   ├── books.py # CRUD routes for /api/books
 │   │   └── films.py # CRUD routes for /api/films
+|   ├── models/
+│   │   ├── __init__.py
+│   │   ├── book.py # ORM model for books
+│   │   └── film.py # ORM model for films
+|   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── book.py # Pydantic schemas for books
+│   │   └── film.py # Pydantic schemas for films
 │   └── __init__.py
 ├── requirements.txt
 └── shelf.db         # SQLite database file (created automatically on first run)
