@@ -4,7 +4,7 @@ from typing import List
 
 from app.database import get_db
 from app.models.film import Film
-from app.schemas import FilmCreate, FilmUpdate, FilmOut
+from app.schemas.film import FilmCreate, FilmUpdate, FilmOut
 from app.logger import get_logger
 
 logger = get_logger(__name__)

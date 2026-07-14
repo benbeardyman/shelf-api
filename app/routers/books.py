@@ -4,7 +4,7 @@ from typing import List
 
 from app.database import get_db
 from app.models.book import Book
-from app.schemas import BookCreate, BookUpdate, BookOut
+from app.schemas.book import BookCreate, BookUpdate, BookOut
 from app.logger import get_logger
 
 logger = get_logger(__name__)
