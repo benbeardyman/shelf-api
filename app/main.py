@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pathlib import Path
 
-from app.database import Base, engine
+from app.db.database import Base, engine
 from app.routers import films
 from app.logger import get_logger
 
