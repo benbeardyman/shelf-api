@@ -31,6 +31,7 @@ Interactive API docs (Swagger UI) are available at `http://localhost:8000/docs`.
 ```
 shelf-api/
 ├── app/
+│   ├── __init__.py
 │   ├── main.py      # Application entry point, router registration, static file serving
 │   ├── database.py  # SQLAlchemy engine, session factory, Base class
 │   ├── logger.py    # Logging configuration
@@ -42,11 +43,14 @@ shelf-api/
 │   │   ├── __init__.py
 │   │   ├── book.py # ORM model for books
 │   │   └── film.py # ORM model for films
-|   ├── schemas/
+│   ├── schemas/
 │   │   ├── __init__.py
 │   │   ├── book.py # Pydantic schemas for books
 │   │   └── film.py # Pydantic schemas for films
-│   └── __init__.py
+│   └── db/
+│       ├── __init__.py
+│       ├── database.py
+│       ├── migrate.py
 ├── requirements.txt
 └── shelf.db         # SQLite database file (created automatically on first run)
 ```
