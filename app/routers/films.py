@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.database import get_db
-from app.models import Film
+from app.models.film import Film
 from app.schemas import FilmCreate, FilmUpdate, FilmOut
 from app.logger import get_logger
 

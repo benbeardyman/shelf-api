@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.database import get_db
-from app.models import Book
+from app.models.book import Book
 from app.schemas import BookCreate, BookUpdate, BookOut
 from app.logger import get_logger
 
