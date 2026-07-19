@@ -1,5 +1,5 @@
 -- migrate:up
-CREATE TABLE books (
+CREATE TABLE IF NOT EXISTS books (
   id INTEGER PRIMARY KEY,
   title VARCHAR NOT NULL,
   author VARCHAR NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE books (
   notes TEXT
 );
 
-CREATE INDEX ix_books_id ON books(id);
+CREATE INDEX IF NOT EXISTS ix_books_id ON books(id);
 
 -- migrate:down
 DROP TABLE IF EXISTS books;
