@@ -1,0 +1,2 @@
+migrationsDir: app/db/migrations
+schemaFile: app/db/schema.sql
