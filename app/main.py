@@ -10,11 +10,6 @@ from app.logger import get_logger
 
 logger = get_logger(__name__)
 
-# Create tables on startup
-logger.info("Initializing database tables...")
-Base.metadata.create_all(bind=engine)
-logger.info("Database tables initialized successfully")
-
 app = FastAPI(title="Shelf", description="Personal library tracker")
 
 logger.info("FastAPI application created: Shelf - Personal library tracker")
