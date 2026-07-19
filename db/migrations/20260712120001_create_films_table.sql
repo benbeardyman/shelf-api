@@ -1,5 +1,5 @@
 -- migrate:up
-CREATE TABLE films (
+CREATE TABLE IF NOT EXISTS films (
   id INTEGER PRIMARY KEY,
   title VARCHAR NOT NULL,
   director VARCHAR,
@@ -11,7 +11,7 @@ CREATE TABLE films (
   notes TEXT
 );
 
-CREATE INDEX ix_films_id ON films(id);
+CREATE INDEX IF NOT EXISTS ix_films_id ON films(id);
 
 -- migrate:down
 DROP TABLE IF EXISTS films;
