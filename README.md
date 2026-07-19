@@ -49,17 +49,77 @@ shelf-api/
 │   │   └── film.py # Pydantic schemas for films
 │   └── db/
 │       ├── __init__.py
-│       ├── database.py
-│       ├── migrate.py
+│       └── database.py
+├── db/
+│   ├── migrations/  # Database migrations (dbmate)
+│   │   ├── 20260719120000_create_books_table.sql
+│   │   └── 20260719120001_create_films_table.sql
+│   └── schema.sql   # Auto-generated complete schema (commit to git for diffs)
+├── .env             # Environment variables (DATABASE_URL)
 ├── requirements.txt
 └── shelf.db         # SQLite database file (created automatically on first run)
 ```
 
 ## Database
 
-SQLite is used as the database. The file `shelf.db` is created automatically in the `shelf-api/` directory the first time the application starts. No setup or migration step is required for a fresh install.
+SQLite is used as the database. The file `shelf.db` is created automatically in the `shelf-api/` directory when migrations are applied. The database file is excluded from version control.
 
-The database file is excluded from version control. Back it up by copying the file:
+### Migrations
+
+This project uses **dbmate** for database migrations. Migrations are plain SQL files stored in `db/migrations/` and tracked in the database's `schema_migrations` table.
+
+#### Viewing migration status
+
+```bash
+npx dbmate status
+```
+
+Output shows which migrations have been applied:
+```
+[X] 20260719120000_create_books_table.sql
+[X] 20260719120001_create_films_table.sql
+
+Applied: 2
+Pending: 0
+```
+
+#### Applying migrations
+
+```bash
+npx dbmate up
+```
+
+This creates the database and applies any pending migrations. The `schema_migrations` table is automatically created to track applied migrations.
+
+#### Creating a new migration
+
+```bash
+npx dbmate new add_column_to_books
+```
+
+This generates a new migration file with `-- migrate:up` and `-- migrate:down` sections. Edit the file to add your SQL:
+
+```sql
+-- migrate:up
+ALTER TABLE books ADD COLUMN status TEXT;
+
+-- migrate:down
+ALTER TABLE books DROP COLUMN status;
+```
+
+#### Rolling back migrations
+
+```bash
+npx dbmate rollback
+```
+
+This rolls back the most recently applied migration.
+
+#### Schema dump
+
+After running migrations, a complete schema dump is saved to `db/schema.sql`. Commit this file to version control to track schema changes in diffs.
+
+Back up the database file:
 
 ```bash
 cp shelf.db shelf.db.bak
@@ -149,12 +209,21 @@ Run from your development machine using the deploy script in the root of the mon
 ./deploy.sh 192.168.1.42
 ```
 
+The deploy script automatically:
+1. Builds the frontend
+2. Syncs migration files to the Pi
+3. Downloads the dbmate binary on the Pi
+4. Runs pending migrations
+5. Restarts the service
+
+Any new migrations added to `db/migrations/` will be applied during deployment.
+
 ## Dependencies
 
-| Package    | Purpose                            |
-| ---------- | ---------------------------------- |
-| fastapi    | Web framework                      |
-| uvicorn    | ASGI server                        |
-| sqlalchemy | ORM and query builder              |
-| alembic    | Schema migrations (for future use) |
-| pydantic   | Request/response validation        |
+| Package    | Purpose                              |
+| ---------- | ------------------------------------ |
+| fastapi    | Web framework                        |
+| uvicorn    | ASGI server                          |
+| sqlalchemy | ORM and query builder                |
+| dbmate     | Database migrations (dev dependency) |
+| pydantic   | Request/response validation          |

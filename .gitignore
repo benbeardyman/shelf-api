@@ -1,6 +1,18 @@
+# Database
 shelf.db
+db/schema.sql
+
+# Python
 venv/
 __pycache__/
 *.pyc
+
+# Node
+node_modules/
+
+# Environment
 .env
+
+# Logs
 logs/
+
