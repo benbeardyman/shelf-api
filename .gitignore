@@ -1,6 +1,6 @@
 # Database
 shelf.db
-db/schema.sql
+app/db/schema.sql
 
 # Python
 venv/
